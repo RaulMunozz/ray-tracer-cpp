@@ -246,6 +246,10 @@ int main() {
         world.add(sphere(vec3(1.0,0.5,-1.0),0.5,material_right));
 
         std::ofstream out("frame_" + std::to_string(f) + ".ppm");
+        if (!out) {
+            std::cerr << "Could not open frame_" << f << ".ppm for writing\n";
+            return 1;
+        }
         out << "P3\n" << image_width << ' ' << image_height << "\n255\n";
 
         for(int j=image_height-1;j>=0;j--){
@@ -265,6 +269,10 @@ int main() {
                     << static_cast<int>(256*clamp(g_col,0.0,0.999)) << ' '
                     << static_cast<int>(256*clamp(b_col,0.0,0.999)) << '\n';
             }
+        }
+        if (!out) {
+            std::cerr << "Error while writing frame_" << f << ".ppm\n";
+            return 1;
         }
         out.close();
         std::cout << "Frame " << f << " done!\n";

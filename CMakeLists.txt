@@ -3,4 +3,4 @@ project(raytracer_animation)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(raytracer_animation src/main.cpp)
+add_executable(raytracer_animation main.cpp)
